@@ -1,0 +1,11 @@
+int zxj = 1314;
+
+int add(int a, int b){
+    int ret = a + b;
+    return ret;
+}
+
+int main(){
+    add(660, 6);
+    return 0;
+}

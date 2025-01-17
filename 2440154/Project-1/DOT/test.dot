@@ -1,0 +1,8 @@
+digraph G_zxj {
+    rankdir = TB;
+    z [shape = polygon]
+    z -> x;
+    x -> j;
+    z -> j;
+    j -> x;
+}

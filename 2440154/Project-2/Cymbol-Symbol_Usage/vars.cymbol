@@ -1,0 +1,13 @@
+int f(int i, float y) {
+    g(); 
+    i = 3;
+    g = 4;
+    return x + y;
+}
+
+void g() {
+    int x = 0;
+    float y;
+    y = 9;
+    x = f;
+}

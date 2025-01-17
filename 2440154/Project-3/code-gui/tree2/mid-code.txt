@@ -1,0 +1,18 @@
+@FUNCTION main NULL
+@DEFINE __TMP1 int
+@ASSIGN __TMP1 = 10
+@DEFINE __TMP2 int
+@ASSIGN __TMP2 = 5
+@DEFINE area int
+@DEFINE __TMP3 int
+@ASSIGN __TMP3 = 1
+@ASSIGN __TMP3 * 
+@DELETE 
+@ASSIGN area = __TMP3
+@DELETE __TMP3
+@DELETE __TMP2
+@DEFINE __TMP4 int
+@ARG 
+@DELETE 
+@ARG main
+@DELETE main
