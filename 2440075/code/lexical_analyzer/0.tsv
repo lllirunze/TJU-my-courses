@@ -1,0 +1,10 @@
+SELECT	<KW,1>
+employer	<IDN,employer>
+,	<SE,3>
+salary	<IDN,salary>
+FROM	<KW,2>
+compony	<IDN,compony>
+WHERE	<KW,3>
+id	<IDN,id>
+=	<OP,1>
+1	<INT,1>

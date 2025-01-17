@@ -1,0 +1,1 @@
+SELECT MIN(_JOIN) AS _,T.c FROM (t1,t3) RIGHT JOIN t2 AS T ON t1.col=t2.col

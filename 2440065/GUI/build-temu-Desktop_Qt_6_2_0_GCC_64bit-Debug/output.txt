@@ -1,0 +1,16 @@
+mips-sde-elf-objcopy -O binary -j .text build/arithmetic  inst.bin
+mips-sde-elf-objcopy -O binary -j .data build/arithmetic  data.bin
+gcc convert.c -o convert
+Welcome to TEMU!
+The executable is .
+For help, type "help"
+1fc00000:   3c 01 10 10         lui     $at, 0x1010
+1fc00004:   34 21 10 10         ori     $at, $at, 0x1010
+1fc00008:   3c 02 01 01         lui     $v0, 0x0101
+1fc0000c:   34 42 11 11         ori     $v0, $v0, 0x1111
+[1;31mtemu: HIT GOOD TRAP[0m at $pc = 0xbfc00010
+
+1fc00010:   4a 00 00 00         ori     $v0, $v0, 0x1111
+Program execution has ended. To restart the program, exit TEMU and run again.
+Program execution has ended. To restart the program, exit TEMU and run again.
+Program execution has ended. To restart the program, exit TEMU and run again.
