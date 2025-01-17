@@ -1,0 +1,98 @@
+DROP TABLE usr;
+DROP TABLE shipper;
+DROP TABLE carrier;
+DROP TABLE waybill;
+DROP TABLE rel;
+DROP TABLE acc;
+DROP TABLE cho;
+
+CREATE TABLE usr(
+	id			INT PRIMARY KEY,
+	name			CHAR(10)
+);
+
+CREATE TABLE shipper(
+	address			CHAR(30),
+	CONSTRAINT pk_shipper PRIMARY KEY(id)
+) INHERITS(usr);
+
+CREATE TABLE carrier(
+	point			INT,
+	CONSTRAINT pk_carrier PRIMARY KEY(id)
+) INHERITS(usr);
+
+CREATE TABLE waybill(
+	id			INT PRIMARY KEY,
+	goods_name		CHAR(20),
+	loading_addr		CHAR(30),
+	unloading_addr		CHAR(30),
+	freight			DECIMAL(8,2),
+	order_time		DATE
+);
+
+CREATE TABLE rel(
+	rel_shipper_id	INT REFERENCES shipper(id),
+	rel_waybill_id	INT REFERENCES waybill(id)
+);
+
+CREATE TABLE acc(
+	acc_carrier_id	INT REFERENCES carrier(id),
+	acc_waybill_id	INT REFERENCES waybill(id),
+	bid_time			DATE,
+	price			DECIMAL(8,2)
+);
+
+CREATE TABLE cho(
+	cho_shipper_id	INT REFERENCES shipper(id),
+	cho_carrier_id	INT REFERENCES carrier(id),
+	cho_waybill_id	INT REFERENCES waybill(id)
+);
+
+SELECT * FROM shipper;
+SELECT * FROM carrier;
+SELECT * FROM waybill;
+SELECT * FROM rel;
+SELECT * FROM acc;
+SELECT * FROM cho;
+
+INSERT INTO shipper VALUES(10000,'XiaoWang','Tianjin');
+INSERT INTO shipper VALUES(10001,'Li Hua','Shanghai');
+INSERT INTO shipper VALUES(10002,'Sam','Paris');
+INSERT INTO shipper VALUES(244266,'Lirz','Dalian');
+INSERT INTO shipper VALUES(10004,'TheShy','Seoul');
+INSERT INTO shipper VALUES(10005,'James','NewYork');
+DELETE FROM shipper WHERE id=10003;
+
+INSERT INTO carrier VALUES(10005,'ShiZhan',5);
+INSERT INTO carrier VALUES(10006,'AlphaGO',1);
+INSERT INTO carrier VALUES(10007,'Rookie',3);
+INSERT INTO carrier VALUES(10008,'Jack Ma',8);
+INSERT INTO carrier VALUES(355,'GeYuan355',2);
+DELETE FROM carrier WHERE id=10008;
+
+INSERT INTO waybill VALUES(3019001,'Database Systems','Beijing','TJU Building NO.55',155.98,'2021-04-15');
+INSERT INTO waybill VALUES(3019002,'GaoShu','Tokyo','cai_niao yi_zhan',32.00,'2019-09-01');
+INSERT INTO waybill VALUES(3019003,'C++','TJU Building NO.55','TJU Building NO.47',79.00,'2019-12-25');
+INSERT INTO waybill VALUES(3019004,'ipad pro 12.9','Los Angeles','GeYuan355',7088.00,'2021-04-09');
+INSERT INTO waybill VALUES(3019005,'ThinkPad ExtremeX1','Guangzhou','Dalian',16999.00,'2020-02-10');
+DELETE FROM waybill WHERE id=3019001;
+
+INSERT INTO rel VALUES(10000,3019001);
+INSERT INTO rel VALUES(10001,3019003);
+INSERT INTO rel VALUES(244266,3019002);
+INSERT INTO rel VALUES(244266,3019004);
+INSERT INTO rel VALUES(244266,3019005);
+
+INSERT INTO acc VALUES(10008,3019001,'2021-04-15',145.00);
+INSERT INTO acc VALUES(355,3019001,'2021-04-16',49.00);
+INSERT INTO acc VALUES(10008,3019005,'2020-04-15',15900.00);
+INSERT INTO acc VALUES(10006,3019002,'2019-12-31',30.00);
+INSERT INTO acc VALUES(10006,3019003,'2019-11-09',69.99);
+INSERT INTO acc VALUES(10006,3019004,'2021-04-10',6988.00);
+DELETE FROM acc WHERE acc_carrier_id=10008;
+
+INSERT INTO cho VALUES(10000,355,3019001);
+INSERT INTO cho VALUES(244266,10006,3019002);
+INSERT INTO cho VALUES(10001,10006,3019003);
+INSERT INTO cho VALUES(244266,10006,3019004);
+INSERT INTO cho VALUES(244266,10008,3019005);
